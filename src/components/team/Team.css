@@ -1,103 +1,90 @@
-.team {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 30px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.team h3 {
-  font-size: 1.5rem;
-  color: #6900ff;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: center;
-}
-
 .team-members {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  align-items: flex-start;
+  padding: 10px;
 }
 
 .team-member {
-  background-color: #f9f9f9;
-  border: 1px solid transparent;
-  border-radius: 100px;
-  padding: 10px;
-  text-align: center;
-  width: 150px;
-  height: 150px;
-
+  background-color: #ffffff;
+  border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-member .cabecalho {
+  background-color: #6f2dbd;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .team-member img {
-  width: 100%;
-  height: auto;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  margin-top: -5px;
+}
+
+.team-member .rodape {
+  padding: 10px;
+  text-align: center;
+}
+.team h3 {
+  font-size: 1.5rem;
+  color: #6900ff;
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .team-member h4 {
-  font-size: 1rem;
-  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333333;
+  margin: 8px 0 4px 0;
 }
 
-.team-member p {
-  font-size: 0.9rem;
+.team-member .rodape p {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+.team-member {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team.programming {
-  background-color: #e3daff;
+.team-member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+.team {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideIn 0.8s ease-in forwards;
 }
 
-.team.programming .team-member {
-  background-color: #6f2dbd;
-  color: #ffffff;
-}
-
-.team.front-end {
-  background-color: #ffecd1;
-}
-
-.team.front-end .team-member {
-  background-color: #f77f00;
-  color: #ffffff;
-}
-
-.team.back-end {
-  background-color: #d4f8e8;
-}
-
-.team.back-end .team-member {
-  background-color: #007f5f;
-  color: #ffffff;
-}
-
-.team.devops {
-  background-color: #ddeeff;
-}
-
-.team.devops .team-member {
-  background-color: #0077b6;
-  color: #ffffff;
-}
-
-.team.ui-ux-designer {
-  background-color: #ffe4f3;
-}
-
-.team.ui-ux-designer .team-member {
-  background-color: #d0006f;
-  color: #ffffff;
-}
-
-.team.mobile {
-  background-color: #fff8e1;
-}
-
-.team.mobile .team-member {
-  background-color: #ff8800;
-  color: #ffffff;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

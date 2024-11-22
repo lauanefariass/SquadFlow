@@ -4,32 +4,25 @@ import InputText from "../inputText";
 import List from "../List";
 import Button from "../button";
 
-const Form = ({ aoColaboradorCadastrado }) => {
+const Form = ({ aoColaboradorCadastrado, teams }) => {
   const [name, setName] = useState("");
   const [cargo, setCargo] = useState("");
-  const [image, setImage] = useState(""); 
+  const [image, setImage] = useState("");
   const [teamSelected, setTeamSelected] = useState("");
-
-  const team = [
-    "Programming",
-    "Front-End",
-    "Back-End",
-    "DevOps",
-    "UI/UX Designer",
-    "Mobile",
-  ];
 
   const Save = (e) => {
     e.preventDefault();
+
     const novoColaborador = {
       name,
       cargo,
-      image, 
-      team: teamSelected,
+      image,
+      team: teamSelected, // Time selecionado
     };
-    aoColaboradorCadastrado(novoColaborador);
 
-    
+    aoColaboradorCadastrado(novoColaborador); // Adiciona o colaborador
+
+    // Limpa os campos do formulário após o envio
     setName("");
     setCargo("");
     setImage("");
@@ -64,7 +57,7 @@ const Form = ({ aoColaboradorCadastrado }) => {
         <List
           mandatory={true}
           label="Teams"
-          itens={team}
+          itens={teams} // Lista os times no formulário
           change={setTeamSelected}
         />
         <Button>Create Card</Button>

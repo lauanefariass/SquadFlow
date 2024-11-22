@@ -11,7 +11,6 @@ const Team = ({ name, primaryColor, secondaryColor, colaboradores }) => {
         {colaboradores.length > 0 ? (
           colaboradores.map((colaborador, index) => (
             <div key={index} className="team-member">
-              {/* Cabeçalho do Card */}
               <div
                 className="cabecalho"
                 style={{ backgroundColor: primaryColor }}
@@ -22,7 +21,6 @@ const Team = ({ name, primaryColor, secondaryColor, colaboradores }) => {
                   className="team-member-image"
                 />
               </div>
-              {/* Rodapé do Card */}
               <div className="rodape">
                 <h4>{colaborador.name}</h4>
                 <p>{colaborador.cargo}</p>

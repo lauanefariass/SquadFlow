@@ -1,17 +1,17 @@
 import "./List.css";
 
-const List = (props) => {
+const List = ({ label, itens, change, mandatory }) => {
   const handleChange = (e) => {
-    props.change(e.target.value);
+    change(e.target.value); // Atualiza o time selecionado
   };
 
   return (
     <div className="list">
-      <label>{props.label}</label>
-      <select required={props.mandatory} onChange={handleChange}>
+      <label>{label}</label>
+      <select required={mandatory} onChange={handleChange}>
         <option value="">Select a Team</option>
-        {props.itens.map((item) => (
-          <option key={item} value={item}>
+        {itens.map((item, index) => (
+          <option key={index} value={item}>
             {item}
           </option>
         ))}

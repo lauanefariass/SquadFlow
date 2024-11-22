@@ -1,0 +1,36 @@
+.footer {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #eaeaea;
+}
+
+.footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.footer ul li a img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+}
+
+.footer ul li a img:hover {
+  transform: scale(1.1);
+}
+
+.footer section img {
+  max-width: 100px;
+  margin: 10px 0;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0;
+}
