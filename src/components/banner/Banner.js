@@ -1,9 +1,10 @@
-import "./Banner.css";
+import './Banner.css'
+import visual from "../../img/MAIN-SQUADFLOW-VISUAL.png";
 
 function Banner() {
   return (
     <header className="banner">
-      <img src="/img/MAIN-SQUADFLOW-VISUAL.png" alt="SquadFlow Visual" />
+      <img src={visual} alt="SquadFlow Visual" />
     </header>
   );
 }

@@ -1,4 +1,7 @@
 import "./Footer.css";
+import facebookIcon from "../../img/facebook (1).svg";
+import twitterIcon from "../../img/twitter (1).svg";
+import instagramIcon from "../../img/instagram (1).svg";
 
 const Footer = () => {
   return (
@@ -11,7 +14,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/img/facebook.svg" alt="Facebook " />
+              <img src={facebookIcon} alt="Facebook" />
             </a>
           </li>
           <li>
@@ -20,7 +23,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/img/twitter.svg" alt="Twitter" />
+              <img src={twitterIcon} alt="Twitter" />
             </a>
           </li>
           <li>
@@ -29,16 +32,10 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/img/instagram.svg" alt="Instagram " />
+              <img src={instagramIcon} alt="Instagram" />
             </a>
           </li>
         </ul>
-      </section>
-      <section>
-        <img src="/img/logo.png" alt="SquadFlow logo" />
-      </section>
-      <section>
-        <p>Developed by Lauane.</p>
       </section>
     </footer>
   );
