@@ -1,26 +1,63 @@
+/* Team Section */
+.team {
+  margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.team h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Members Container */
 .team-members {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  align-items: flex-start;
-  padding: 10px;
+  justify-content: center;
 }
 
+/* Member Card */
 .team-member {
-  background-color: #ffffff;
+  position: relative;
+  width: 180px;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  width: 180px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.delete-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: black;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+  color: #cc0000;
 }
 
 .team-member .cabecalho {
   background-color: #6f2dbd;
   height: 80px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,15 +76,6 @@
   padding: 10px;
   text-align: center;
 }
-.team h3 {
-  font-size: 1.5rem;
-  color: #6900ff;
-  margin-bottom: 15px;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
 
 .team-member h4 {
   font-size: 16px;
@@ -55,33 +83,16 @@
   margin: 8px 0 4px 0;
 }
 
-.team-member .rodape p {
+.team-member p {
   font-size: 14px;
   color: #666666;
   margin: 0;
 }
-.team-member {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.team-member:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-}
-.team {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: slideIn 0.8s ease-in forwards;
-}
-
-@keyframes slideIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;

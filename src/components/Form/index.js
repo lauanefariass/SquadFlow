@@ -5,24 +5,33 @@ import List from "../List";
 import Button from "../button";
 
 const Form = ({ aoColaboradorCadastrado, teams }) => {
+ 
   const [name, setName] = useState("");
   const [cargo, setCargo] = useState("");
   const [image, setImage] = useState("");
   const [teamSelected, setTeamSelected] = useState("");
 
-  const Save = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
+    
+    if (!name || !cargo || !teamSelected) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+   
     const novoColaborador = {
       name,
       cargo,
-      image,
-      team: teamSelected, // Time selecionado
+      image: image || "https://via.placeholder.com/150", 
+      team: teamSelected,
     };
 
-    aoColaboradorCadastrado(novoColaborador); // Adiciona o colaborador
+    aoColaboradorCadastrado(novoColaborador); 
 
-    // Limpa os campos do formulário após o envio
+
+    
     setName("");
     setCargo("");
     setImage("");
@@ -31,8 +40,9 @@ const Form = ({ aoColaboradorCadastrado, teams }) => {
 
   return (
     <section className="Form-conteiner">
-      <form onSubmit={Save}>
+      <form onSubmit={handleSubmit}>
         <h2>Add a Person</h2>
+        
         <InputText
           mandatory={true}
           label="Name"
@@ -40,6 +50,8 @@ const Form = ({ aoColaboradorCadastrado, teams }) => {
           value={name}
           change={setName}
         />
+
+       
         <InputText
           mandatory={true}
           label="Position"
@@ -47,19 +59,25 @@ const Form = ({ aoColaboradorCadastrado, teams }) => {
           value={cargo}
           change={setCargo}
         />
+
+        
         <InputText
-          mandatory={true}
+          mandatory={false}
           label="Image URL"
-          placeholder="Enter image URL"
+          placeholder="Enter image URL (optional)"
           value={image}
           change={setImage}
         />
+
+       
         <List
           mandatory={true}
           label="Teams"
-          itens={teams} // Lista os times no formulário
+          itens={teams}
           change={setTeamSelected}
+          value={teamSelected}
         />
+
         <Button>Create Card</Button>
       </form>
     </section>
