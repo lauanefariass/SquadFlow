@@ -2,18 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
-  background-color: #f9f9f9;
+  padding: 40px 10px;
 }
 
 .Form-conteiner form {
   width: 100%;
   max-width: 500px;
-  background-color: #6900ff;
-  color: #f9f9f9;
+  background-color: #ff5454;
+  color: #250059;
   border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 35px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.441);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -23,7 +22,7 @@
 }
 
 .Form-conteiner form h2 {
-  color: #f9f9f9;
+  color: #250059;
   text-align: center;
   margin-bottom: 24px;
 }
@@ -33,21 +32,87 @@
   width: 100%;
   padding: 14px;
   margin: 12px 0;
-  border: 1px solid #0026fb;
+  border: none;
   border-radius: 25px;
   background-color: #f9f9f9;
-  color: #121212;
+  color: #250059;
   font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.Form-conteiner form input:focus,
+.Form-conteiner form select:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(37, 0, 89, 0.3);
 }
 
 .Form-conteiner form button {
+  letter-spacing: 2px;
   width: 50%;
   padding: 12px;
-  background-color: #ffa915;
+  background-color: #250059;
   color: #f9f9f9;
   font-weight: 800;
   border: none;
   border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.Form-conteiner form button:hover {
+  background-color: #ff5454;
+  transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .Form-conteiner {
+    padding: 30px 10px;
+  }
+
+  .Form-conteiner form {
+    max-width: 90%;
+  }
+
+  .Form-conteiner form h2 {
+    font-size: 1.5rem;
+  }
+
+  .Form-conteiner form input,
+  .Form-conteiner form select {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .Form-conteiner form button {
+    width: 60%;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Form-conteiner {
+    padding: 20px 5px;
+  }
+
+  .Form-conteiner form {
+    max-width: 100%;
+  }
+
+  .Form-conteiner form h2 {
+    font-size: 1.2rem;
+  }
+
+  .Form-conteiner form input,
+  .Form-conteiner form select {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .Form-conteiner form button {
+    width: 70%;
+    font-size: 12px;
+    padding: 8px;
+  }
 }
