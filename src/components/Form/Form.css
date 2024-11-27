@@ -1,7 +1,8 @@
 .Form-conteiner {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 20px;
   padding: 40px 10px;
 }
 
@@ -64,9 +65,37 @@
   transform: scale(1.05);
 }
 
-/* Responsividade */
+.new-team-form {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.new-team-form .color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.new-team-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.new-team-form input[type="color"] {
+  width: 12%;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .Form-conteiner {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
     padding: 30px 10px;
   }
 

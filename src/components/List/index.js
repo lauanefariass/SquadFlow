@@ -2,7 +2,7 @@ import "./List.css";
 
 const List = ({ label, itens, change, mandatory }) => {
   const handleChange = (e) => {
-    change(e.target.value); // Atualiza o time selecionado
+    change(e.target.value);
   };
 
   return (
