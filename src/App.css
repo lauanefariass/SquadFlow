@@ -6,38 +6,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-@media (max-width: 1024px) {
-  body {
-    background-color: #250059f8;
-  }
-}
-
-@media (max-width: 768px) {
-  .spinner {
-    width: 30px;
-    height: 30px;
-    border-width: 5px;
-  }
-
-  .loader {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    background-color: #13002f;
-  }
-
-  .spinner {
-    width: 25px;
-    height: 25px;
-    border-width: 4px;
-  }
-
-  .loader {
-    align-items: flex-start;
-    padding-top: 40px;
-  }
-}
