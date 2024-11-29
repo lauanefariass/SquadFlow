@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Team from "./components/team";
 import Banner from "./components/banner/Banner";
@@ -46,9 +46,16 @@ const App = () => {
     },
   ]);
 
-  const [colaboradores, setColaboradores] = useState([]);
+  const [colaboradores, setColaboradores] = useState(() => {
+    const savedData = localStorage.getItem("colaboradores");
+    return savedData ? JSON.parse(savedData) : [];
+  });
+
   const [showForm, setShowForm] = useState(false);
-  const formRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem("colaboradores", JSON.stringify(colaboradores));
+  }, [colaboradores]);
 
   const addColaborador = (colaborador) =>
     setColaboradores((prev) => [...prev, { ...colaborador, id: uuidv4() }]);
@@ -68,49 +75,37 @@ const App = () => {
     );
   };
 
-  const handleShowForm = () => {
-    setShowForm(true);
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
-
   const addNewTeam = (newTeam) => {
     setTeams((prev) => [...prev, { ...newTeam, id: uuidv4() }]);
   };
 
   return (
     <div className="App">
-      <Banner onShowForm={handleShowForm} />
-      <div ref={formRef}>
-        {showForm && (
-          <Form
-            aoColaboradorCadastrado={addColaborador}
-            teams={teams.map((team) => team.nome)}
-            onNewTeamCreated={addNewTeam}
-          />
-        )}
-      </div>
+      <Banner onShowForm={() => setShowForm(true)} />
+      {showForm && (
+        <Form
+          aoColaboradorCadastrado={addColaborador}
+          teams={teams.map((team) => team.nome)}
+          onNewTeamCreated={addNewTeam}
+        />
+      )}
       {teams
         .filter((team) =>
           colaboradores.some((colaborador) => colaborador.team === team.nome)
-        ) 
-        .map(({ id, nome, primaryColor, secondaryColor }) => {
-          const teamColaboradores = colaboradores.filter(
-            (colaborador) => colaborador.team === nome
-          );
-          return (
-            <Team
-              key={id}
-              name={nome}
-              primaryColor={primaryColor}
-              secondaryColor={secondaryColor}
-              colaboradores={teamColaboradores}
-              onDelete={(colaboradorId) => deleteColaborador(colaboradorId)}
-              onColorChange={handleColorChange}
-            />
-          );
-        })}
+        )
+        .map(({ id, nome, primaryColor, secondaryColor }) => (
+          <Team
+            key={id}
+            name={nome}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            colaboradores={colaboradores.filter(
+              (colaborador) => colaborador.team === nome
+            )}
+            onDelete={deleteColaborador}
+            onColorChange={handleColorChange}
+          />
+        ))}
       <Footer />
     </div>
   );
