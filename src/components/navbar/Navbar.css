@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: var(--background-color); 
+  color: var(--text-color);
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color); 
+}
+
+.navbar-links {
+  display: flex;
+  gap: 35px;
+  list-style: none;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: var(--text-color); 
+  font-size: 18px;
+}
+
+.navbar-links li a.active {
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary-color); 
+}
+
+.navbar-links li a:hover {
+  color: var(--primary-color); 
+}

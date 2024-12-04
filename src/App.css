@@ -1,8 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
-body {
-  background-color: #250059;
-  font-family: "Poppins", sans-serif;
+* {
   margin: 0;
-  padding: 0;
+}
+
+:root {
+ 
+  --primary-color-light: #6a0dad;
+  --secondary-color-light: #250059;
+  --background-color-light: #f1f1f1;
+  --text-color-light: #000000;
+
+  
+  --primary-color-dark: #e91663;
+  --secondary-color-dark: #c21858;
+  --background-color-dark: #1d1d2c;
+  --text-color-dark: #f1f1f1;
+}
+
+[data-theme="light"] {
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-light);
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+}
+
+[data-theme="dark"] {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+}
+
+body,
+.App {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

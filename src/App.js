@@ -1,114 +1,167 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
-import Team from "./components/team";
-import Banner from "./components/banner/Banner";
-import Form from "./components/Form";
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/rodape/Footer";
+import Home from "./pages/Home/Home";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Teams from "./pages/Teams/Teams";
+import Settings from "./pages/Settings/Settings";
+import "./App.css";
 
-const App = () => {
-  const [teams, setTeams] = useState([
-    {
-      id: uuidv4(),
-      nome: "Programming",
-      primaryColor: "#FF4C4C",
-      secondaryColor: "#1D1D2C",
-    },
-    {
-      id: uuidv4(),
-      nome: "Front-End",
-      primaryColor: "#4CC9F0",
-      secondaryColor: "#1D1D2C",
-    },
-    {
-      id: uuidv4(),
-      nome: "Back-End",
-      primaryColor: "#FF5D8F",
-      secondaryColor: "#1D1D2C",
-    },
-    {
-      id: uuidv4(),
-      nome: "DevOps",
-      primaryColor: "#2ECC71",
-      secondaryColor: "#1D1D2C",
-    },
-    {
-      id: uuidv4(),
-      nome: "UI/UX Designer",
-      primaryColor: "#FFD700",
-      secondaryColor: "#1D1D2C",
-    },
-    {
-      id: uuidv4(),
-      nome: "Mobile",
-      primaryColor: "#FFA500",
-      secondaryColor: "#1D1D2C",
-    },
-  ]);
+const AppContent = () => {
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark"
+  );
+  const [language, setLanguage] = useState(
+    () => localStorage.getItem("language") || "English"
+  );
 
-  const [colaboradores, setColaboradores] = useState(() => {
-    const savedData = localStorage.getItem("colaboradores");
-    return savedData ? JSON.parse(savedData) : [];
+  const [teams, setTeams] = useState(() => {
+    const savedTeams = localStorage.getItem("teams");
+    return savedTeams
+      ? JSON.parse(savedTeams)
+      : [
+          {
+            id: 1,
+            nome: "Front-End",
+            primaryColor: "#4CC9F0",
+            secondaryColor: "#1D1D2C",
+          },
+          {
+            id: 2,
+            nome: "Back-End",
+            primaryColor: "#FF5D8F",
+            secondaryColor: "#1D1D2C",
+          },
+          {
+            id: 3,
+            nome: "UI/UX Designer",
+            primaryColor: "#8E44AD",
+            secondaryColor: "#1D1D2C",
+          },
+          {
+            id: 4,
+            nome: "Data Science",
+            primaryColor: "#3498DB",
+            secondaryColor: "#1D1D2C",
+          },
+        ];
   });
 
-  const [showForm, setShowForm] = useState(false);
+  const [colaboradores, setColaboradores] = useState(() => {
+    const savedColaboradores = localStorage.getItem("colaboradores");
+    return savedColaboradores ? JSON.parse(savedColaboradores) : [];
+  });
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem("teams", JSON.stringify(teams));
+  }, [teams]);
 
   useEffect(() => {
     localStorage.setItem("colaboradores", JSON.stringify(colaboradores));
   }, [colaboradores]);
 
-  const addColaborador = (colaborador) =>
-    setColaboradores((prev) => [...prev, { ...colaborador, id: uuidv4() }]);
+  const aoColaboradorCadastrado = (novoColaborador) => {
+    setColaboradores((prev) => [
+      ...prev,
+      { ...novoColaborador, id: Date.now() },
+    ]);
+  };
 
-  const deleteColaborador = (colaboradorId) =>
-    setColaboradores((prev) =>
-      prev.filter((colaborador) => colaborador.id !== colaboradorId)
-    );
+  const addNewTeam = (newTeam) => {
+    setTeams((prev) => {
+      const updatedTeams = [...prev, { ...newTeam, id: prev.length + 1 }];
+      localStorage.setItem("teams", JSON.stringify(updatedTeams));
+      return updatedTeams;
+    });
+  };
 
-  const handleColorChange = (teamName, newPrimary, newSecondary) => {
-    setTeams((prev) =>
-      prev.map((team) =>
-        team.nome === teamName
-          ? { ...team, primaryColor: newPrimary, secondaryColor: newSecondary }
-          : team
+  const handleColorChange = (teamName, primaryColor) => {
+    setTeams((prevTeams) =>
+      prevTeams.map((team) =>
+        team.nome === teamName ? { ...team, primaryColor } : team
       )
     );
   };
 
-  const addNewTeam = (newTeam) => {
-    setTeams((prev) => [...prev, { ...newTeam, id: uuidv4() }]);
+  const deleteColaborador = (id) => {
+    setColaboradores((prev) =>
+      prev.filter((colaborador) => colaborador.id !== id)
+    );
+  };
+
+  const location = useLocation();
+
+  const translateNavbar = {
+    English: ["Home", "Dashboard", "Teams", "Settings"],
+    Portuguese: ["Início", "Painel", "Times", "Configurações"],
+    Spanish: ["Inicio", "Panel", "Equipos", "Configuraciones"],
   };
 
   return (
-    <div className="App">
-      <Banner onShowForm={() => setShowForm(true)} />
-      {showForm && (
-        <Form
-          aoColaboradorCadastrado={addColaborador}
-          teams={teams.map((team) => team.nome)}
-          onNewTeamCreated={addNewTeam}
-        />
+    <div className={`App ${theme}`}>
+      {location.pathname !== "/" && (
+        <Navbar language={language} items={translateNavbar[language]} />
       )}
-      {teams
-        .filter((team) =>
-          colaboradores.some((colaborador) => colaborador.team === team.nome)
-        )
-        .map(({ id, nome, primaryColor, secondaryColor }) => (
-          <Team
-            key={id}
-            name={nome}
-            primaryColor={primaryColor}
-            secondaryColor={secondaryColor}
-            colaboradores={colaboradores.filter(
-              (colaborador) => colaborador.team === nome
-            )}
-            onDelete={deleteColaborador}
-            onColorChange={handleColorChange}
-          />
-        ))}
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Dashboard
+              teams={teams}
+              colaboradores={colaboradores}
+              aoColaboradorCadastrado={aoColaboradorCadastrado}
+              onNewTeamCreated={addNewTeam}
+            />
+          }
+        />
+        <Route
+          path="/teams"
+          element={
+            <Teams
+              teams={teams}
+              colaboradores={colaboradores}
+              onColorChange={handleColorChange}
+              deleteColaborador={deleteColaborador}
+            />
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <Settings
+              currentTheme={theme}
+              currentLanguage={language}
+              onThemeChange={setTheme}
+              onLanguageChange={setLanguage}
+            />
+          }
+        />
+      </Routes>
+      {location.pathname !== "/" && <Footer />}
     </div>
   );
 };
+
+const App = () => (
+  <Router>
+    <AppContent />
+  </Router>
+);
 
 export default App;

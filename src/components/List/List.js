@@ -1,5 +1,3 @@
-import "./List.css";
-
 const List = ({ label, itens, change, mandatory }) => {
   const handleChange = (e) => {
     change(e.target.value);
