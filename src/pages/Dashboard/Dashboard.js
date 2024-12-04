@@ -11,7 +11,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { motion } from "framer-motion";
-import InputText from "../../components/InputText/InputText";
+import InputText from "../../components/inputText/InputText";
 import List from "../../components/List/List";
 import Button from "../../components/button/index";
 import "./Dashboard.css";

@@ -21,6 +21,7 @@ const AppContent = () => {
     () => localStorage.getItem("language") || "English"
   );
 
+  // Dados iniciais para os times
   const [teams, setTeams] = useState(() => {
     const savedTeams = localStorage.getItem("teams");
     return savedTeams
