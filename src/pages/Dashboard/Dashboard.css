@@ -58,7 +58,7 @@ h1 {
 .formulario select {
   all: unset;
   display: block;
-  width: 100%;
+  width: 90%;
   padding: 14px !important;
   margin: 12px 0;
   border-radius: 35px;

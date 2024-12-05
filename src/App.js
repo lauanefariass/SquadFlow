@@ -21,7 +21,6 @@ const AppContent = () => {
     () => localStorage.getItem("language") || "English"
   );
 
-  // Dados iniciais para os times
   const [teams, setTeams] = useState(() => {
     const savedTeams = localStorage.getItem("teams");
     return savedTeams
@@ -91,6 +90,10 @@ const AppContent = () => {
     });
   };
 
+  const deleteTeam = (id) => {
+    setTeams((prevTeams) => prevTeams.filter((team) => team.id !== id));
+  };
+
   const handleColorChange = (teamName, primaryColor) => {
     setTeams((prevTeams) =>
       prevTeams.map((team) =>
@@ -139,6 +142,7 @@ const AppContent = () => {
               colaboradores={colaboradores}
               onColorChange={handleColorChange}
               deleteColaborador={deleteColaborador}
+              deleteTeam={deleteTeam} // Adicionada a função aqui
             />
           }
         />
