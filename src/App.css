@@ -3,13 +3,11 @@
 }
 
 :root {
- 
   --primary-color-light: #6a0dad;
   --secondary-color-light: #250059;
   --background-color-light: #f1f1f1;
   --text-color-light: #000000;
 
-  
   --primary-color-dark: #e91663;
   --secondary-color-dark: #c21858;
   --background-color-dark: #1d1d2c;
@@ -36,3 +34,5 @@ body,
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+

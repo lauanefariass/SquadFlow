@@ -3,14 +3,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
-  background-color: var(--background-color); 
+  background-color: var(--background-color);
   color: var(--text-color);
 }
 
 .navbar-logo {
   font-size: 24px;
   font-weight: bold;
-  color: var(--text-color); 
+  color: var(--text-color);
 }
 
 .navbar-links {
@@ -21,15 +21,55 @@
 
 .navbar-links li a {
   text-decoration: none;
-  color: var(--text-color); 
+  color: var(--text-color);
   font-size: 18px;
 }
 
 .navbar-links li a.active {
   font-weight: bold;
-  border-bottom: 2px solid var(--primary-color); 
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .navbar-links li a:hover {
-  color: var(--primary-color); 
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+  }
+
+  .navbar-logo {
+    font-size: 22px;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navbar-links li a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-logo {
+    font-size: 20px;
+  }
+
+  .navbar-links {
+    gap: 10px;
+  }
+
+  .navbar-links li a {
+    font-size: 14px;
+  }
 }
