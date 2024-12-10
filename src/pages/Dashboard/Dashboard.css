@@ -75,7 +75,7 @@ h1 {
 }
 
 .formulario button {
-  width: 100%;
+  width: 50%;
   padding: 14px;
   background-color: var(--primary-color);
   color: var(--button-text-color);
@@ -136,26 +136,34 @@ h1 {
 
   .form-container {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     padding: 10px;
+    width: 70%;
   }
 
   .formulario {
-    width: 100%;
-    padding: 10px;
+    width: 70%;
+    max-width: 600px;
+    padding: 20px;
     font-size: 14px;
+    border-radius: 35px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 
   .formulario input,
   .formulario select {
-    width: 100%;
-    padding: 8px;
-    font-size: 12px;
+    width: 95%;
+    padding: 10px;
+    font-size: 14px;
+    margin: 10px 0;
+    border-radius: 15px;
   }
 
   .formulario button {
-    padding: 8px;
-    font-size: 14px;
+    width: 50%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 20px;
   }
 }
 
@@ -166,36 +174,33 @@ h1 {
   }
 
   .chart-container {
-    height: 180px; /* Ajuste ainda mais para dispositivos muito pequenos */
+    height: 180px;
   }
 
-  .team-member {
-    width: 100%;
-    max-width: 300px;
-    height: 100px; /* Reduzindo o tamanho do card */
-  }
-
-  .cabecalho {
-    height: 40px;
-  }
-
-  .cabecalho img {
-    width: 30px;
-    height: 30px;
+  .form-container {
+    width: 80%;
+    padding: 30px;
   }
 
   .formulario {
-    padding: 8px;
+    width: 95%;
+    max-width: 450px;
+    padding: 15px;
+    border-radius: 35px;
   }
 
   .formulario input,
   .formulario select {
-    padding: 6px;
-    font-size: 12px;
+    padding: 8px;
+    font-size: 14px;
+    margin: 8px 0;
+    border-radius: 10px;
   }
 
   .formulario button {
-    padding: 6px;
-    font-size: 12px;
+    width: 50%;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 15px;
   }
 }

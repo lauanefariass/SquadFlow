@@ -36,9 +36,8 @@
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 15px 20px;
   }
 
@@ -47,8 +46,8 @@
   }
 
   .navbar-links {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    gap: 20px;
   }
 
   .navbar-links li a {
@@ -66,7 +65,7 @@
   }
 
   .navbar-links {
-    gap: 10px;
+    gap: 15px;
   }
 
   .navbar-links li a {
