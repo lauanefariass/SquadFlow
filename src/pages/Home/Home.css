@@ -8,38 +8,25 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Garante que o vídeo ocupe toda a largura */
-  height: 100%; /* Garante que o vídeo ocupe toda a altura */
-  object-fit: cover; /* Faz o vídeo preencher o container proporcionalmente */
-  object-position: center; /* Centraliza o conteúdo do vídeo */
-  z-index: 1; /* Mantém o vídeo ao fundo */
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-  .background-video {
-    object-fit: contain; /* Ajusta o vídeo para caber na tela sem cortes */
-  }
-}
-
-@media (max-width: 480px) {
-  .background-video {
-    object-fit: contain; /* Garante que o vídeo caiba em dispositivos muito pequenos */
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
 }
 
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   padding: 20px;
-  z-index: 1;
+  text-align: center;
 }
 
 .overlay h1 {
@@ -47,13 +34,11 @@
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .overlay button {
-  margin-top: 20px;
-  padding: 15px 25px;
-  font-size: 20px;
+  padding: 12px 25px;
+  font-size: 18px;
   color: #ffffff;
   background-color: #ff5454;
   border: none;
@@ -66,4 +51,47 @@
 .overlay button:hover {
   background-color: #250059;
   transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .background-video {
+    width: 100%;
+    height: auto;
+    margin-top: 240px;
+  }
+
+  .overlay h1 {
+    font-size: 2.5rem;
+  }
+
+  .overlay button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .home-page {
+    height: auto;
+  }
+
+  .overlay {
+    top: 60%;
+    padding: 15px;
+  }
+
+  .overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .overlay button {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
 }
