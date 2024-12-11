@@ -1,17 +1,15 @@
-* {
-  margin: 0;
-}
-
 :root {
   --primary-color-light: #6a0dad;
   --secondary-color-light: #250059;
   --background-color-light: #f1f1f1;
   --text-color-light: #000000;
+  --danger-color-light: #c21858;
 
   --primary-color-dark: #e91663;
   --secondary-color-dark: #c21858;
   --background-color-dark: #1d1d2c;
   --text-color-dark: #f1f1f1;
+  --danger-color-dark: #e91663;
 }
 
 [data-theme="light"] {
@@ -19,6 +17,7 @@
   --secondary-color: var(--secondary-color-light);
   --background-color: var(--background-color-light);
   --text-color: var(--text-color-light);
+  --danger-color: var(--danger-color-light);
 }
 
 [data-theme="dark"] {
@@ -26,6 +25,7 @@
   --secondary-color: var(--secondary-color-dark);
   --background-color: var(--background-color-dark);
   --text-color: var(--text-color-dark);
+  --danger-color: var(--danger-color-dark);
 }
 
 body,
@@ -35,4 +35,69 @@ body,
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.modal-content {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
+.modal-header {
+  border-bottom: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.modal-header .btn-close {
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.modal-header .btn-close:hover {
+  color: var(--danger-color);
+  opacity: 1;
+}
+
+.modal-body {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.modal-footer .btn {
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.modal-footer .btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: #ffffff;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: var(--secondary-color);
+  opacity: 0.9;
+}
+
+.modal-footer .btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+  color: #ffffff;
+}
+
+.modal-footer .btn-danger:hover {
+  background-color: var(--primary-color);
+}
+
+.modal-footer .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+}

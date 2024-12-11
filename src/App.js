@@ -11,6 +11,8 @@ import Home from "./pages/Home/Home";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Teams from "./pages/Teams/Teams";
 import Settings from "./pages/Settings/Settings";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const AppContent = () => {
@@ -38,18 +40,6 @@ const AppContent = () => {
             primaryColor: "#FF5D8F",
             secondaryColor: "#1D1D2C",
           },
-          {
-            id: 3,
-            nome: "UI/UX Designer",
-            primaryColor: "#8E44AD",
-            secondaryColor: "#1D1D2C",
-          },
-          {
-            id: 4,
-            nome: "Data Science",
-            primaryColor: "#3498DB",
-            secondaryColor: "#1D1D2C",
-          },
         ];
   });
 
@@ -57,6 +47,11 @@ const AppContent = () => {
     const savedColaboradores = localStorage.getItem("colaboradores");
     return savedColaboradores ? JSON.parse(savedColaboradores) : [];
   });
+
+  const [showModal, setShowModal] = useState(false);
+  const [deleteAction, setDeleteAction] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
@@ -80,6 +75,8 @@ const AppContent = () => {
       ...prev,
       { ...novoColaborador, id: Date.now() },
     ]);
+    setSuccessMessage("Collaborator added successfully!");
+    setShowSuccessModal(true);
   };
 
   const addNewTeam = (newTeam) => {
@@ -88,6 +85,8 @@ const AppContent = () => {
       localStorage.setItem("teams", JSON.stringify(updatedTeams));
       return updatedTeams;
     });
+    setSuccessMessage("Team created successfully!");
+    setShowSuccessModal(true);
   };
 
   const deleteTeam = (id) => {
@@ -106,6 +105,11 @@ const AppContent = () => {
     setColaboradores((prev) =>
       prev.filter((colaborador) => colaborador.id !== id)
     );
+  };
+
+  const confirmDelete = (action) => {
+    setDeleteAction(() => () => action());
+    setShowModal(true);
   };
 
   const location = useLocation();
@@ -141,8 +145,10 @@ const AppContent = () => {
               teams={teams}
               colaboradores={colaboradores}
               onColorChange={handleColorChange}
-              deleteColaborador={deleteColaborador}
-              deleteTeam={deleteTeam} // Adicionada a função aqui
+              deleteColaborador={(id) =>
+                confirmDelete(() => deleteColaborador(id))
+              }
+              deleteTeam={(id) => confirmDelete(() => deleteTeam(id))}
             />
           }
         />
@@ -159,6 +165,51 @@ const AppContent = () => {
         />
       </Routes>
       {location.pathname !== "/" && <Footer />}
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        centered
+        backdrop="static"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this item? This action cannot be
+          undone.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteAction();
+              setShowModal(false);
+            }}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showSuccessModal}
+        onHide={() => setShowSuccessModal(false)}
+        centered
+        backdrop="static"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Success</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{successMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setShowSuccessModal(false)}>OK</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
