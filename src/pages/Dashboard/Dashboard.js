@@ -10,8 +10,7 @@ import {
   Legend,
   ArcElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-import { Pie } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 import { motion } from "framer-motion";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,10 +21,10 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
-  Legend,
-  ArcElement
+  Legend
 );
 
 const Dashboard = ({
@@ -80,7 +79,7 @@ const Dashboard = ({
     setShowAddTeamModal(false);
   };
 
-  const chartData = {
+  const lineChartData = {
     labels: teams.map((team) => team.nome),
     datasets: [
       {
@@ -112,8 +111,7 @@ const Dashboard = ({
             ).length
         ),
         backgroundColor: teams.map((team) => team.primaryColor),
-        borderColor: "#fff",
-        borderWidth: 2,
+        hoverOffset: 4,
       },
     ],
   };
@@ -124,15 +122,6 @@ const Dashboard = ({
     plugins: {
       legend: { position: "top" },
       title: { display: true, text: "Collaborators per Team" },
-    },
-  };
-
-  const pieChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: "top" },
-      title: { display: true, text: "Collaborator Distribution" },
     },
   };
 
@@ -148,14 +137,6 @@ const Dashboard = ({
       transition={{ duration: 0.6 }}
     >
       <h1 style={{ color: "var(--text-color)" }}>Dashboard</h1>
-      <motion.div
-        className="chart-container"
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <Line data={chartData} options={chartOptions} />
-      </motion.div>
 
       <motion.div
         className="chart-container"
@@ -163,7 +144,19 @@ const Dashboard = ({
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Pie data={pieChartData} options={pieChartOptions} />
+        <Line data={lineChartData} options={chartOptions} />
+      </motion.div>
+
+      <motion.div
+        className="chart-container"
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <Pie
+          data={pieChartData}
+          options={{ plugins: { legend: { position: "bottom" } } }}
+        />
       </motion.div>
 
       <div className="button-container">
