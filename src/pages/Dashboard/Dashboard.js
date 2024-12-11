@@ -21,10 +21,10 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  ArcElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement
 );
 
 const Dashboard = ({
@@ -79,7 +79,7 @@ const Dashboard = ({
     setShowAddTeamModal(false);
   };
 
-  const lineChartData = {
+  const chartData = {
     labels: teams.map((team) => team.nome),
     datasets: [
       {
@@ -111,7 +111,8 @@ const Dashboard = ({
             ).length
         ),
         backgroundColor: teams.map((team) => team.primaryColor),
-        hoverOffset: 4,
+        borderColor: teams.map((team) => team.primaryColor),
+        borderWidth: 1,
       },
     ],
   };
@@ -144,7 +145,7 @@ const Dashboard = ({
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Line data={lineChartData} options={chartOptions} />
+        <Line data={chartData} options={chartOptions} />
       </motion.div>
 
       <motion.div
@@ -153,10 +154,7 @@ const Dashboard = ({
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <Pie
-          data={pieChartData}
-          options={{ plugins: { legend: { position: "bottom" } } }}
-        />
+        <Pie data={pieChartData} />
       </motion.div>
 
       <div className="button-container">
