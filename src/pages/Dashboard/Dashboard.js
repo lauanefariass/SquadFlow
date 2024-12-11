@@ -8,12 +8,13 @@ import {
   Title,
   Tooltip,
   Legend,
+  ArcElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { motion } from "framer-motion";
-import InputText from "../../components/inputText/InputText";
-import List from "../../components/List/List";
-import Button from "../../components/button/index";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 
 ChartJS.register(
@@ -23,7 +24,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement
 );
 
 const Dashboard = ({
@@ -40,8 +42,11 @@ const Dashboard = ({
   const [newTeamName, setNewTeamName] = useState("");
   const [newTeamPrimaryColor, setNewTeamPrimaryColor] = useState("#FFFFFF");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [showAddCollaboratorModal, setShowAddCollaboratorModal] =
+    useState(false);
+  const [showAddTeamModal, setShowAddTeamModal] = useState(false);
+
+  const handleAddCollaborator = () => {
     if (!name || !cargo || !teamSelected) {
       alert("Please fill in all required fields.");
       return;
@@ -57,10 +62,10 @@ const Dashboard = ({
     setCargo("");
     setImage("");
     setTeamSelected("");
+    setShowAddCollaboratorModal(false);
   };
 
-  const handleNewTeamSubmit = (e) => {
-    e.preventDefault();
+  const handleAddTeam = () => {
     if (!newTeamName) {
       alert("Please provide a team name.");
       return;
@@ -72,6 +77,7 @@ const Dashboard = ({
 
     setNewTeamName("");
     setNewTeamPrimaryColor("#FFFFFF");
+    setShowAddTeamModal(false);
   };
 
   const chartData = {
@@ -94,12 +100,39 @@ const Dashboard = ({
     ],
   };
 
+  const pieChartData = {
+    labels: teams.map((team) => team.nome),
+    datasets: [
+      {
+        label: "Collaborator Distribution",
+        data: teams.map(
+          (team) =>
+            colaboradores.filter(
+              (colaborador) => colaborador.team === team.nome
+            ).length
+        ),
+        backgroundColor: teams.map((team) => team.primaryColor),
+        borderColor: "#fff",
+        borderWidth: 2,
+      },
+    ],
+  };
+
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: { position: "top" },
       title: { display: true, text: "Collaborators per Team" },
+    },
+  };
+
+  const pieChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: "top" },
+      title: { display: true, text: "Collaborator Distribution" },
     },
   };
 
@@ -123,66 +156,141 @@ const Dashboard = ({
       >
         <Line data={chartData} options={chartOptions} />
       </motion.div>
-      <motion.section
-        className="form-container"
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
+
+      <motion.div
+        className="chart-container"
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <form onSubmit={handleSubmit} className="formulario">
-          <h2>Add a Collaborator</h2>
-          <InputText
-            mandatory
-            label="Name"
+        <Pie data={pieChartData} options={pieChartOptions} />
+      </motion.div>
+
+      <div className="button-container">
+        <Button
+          variant="primary"
+          className="btn-primary"
+          onClick={() => setShowAddCollaboratorModal(true)}
+        >
+          Add Collaborator
+        </Button>
+        <Button
+          variant="secondary"
+          className="btn-secondary"
+          onClick={() => setShowAddTeamModal(true)}
+        >
+          Add Team
+        </Button>
+      </div>
+
+      <Modal
+        show={showAddCollaboratorModal}
+        onHide={() => setShowAddCollaboratorModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Add a Collaborator</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input
+            type="text"
+            className="modal-input"
             placeholder="Write your name"
             value={name}
-            change={setName}
+            onChange={(e) => setName(e.target.value)}
           />
-          <InputText
-            mandatory
-            label="Position"
+          <input
+            type="text"
+            className="modal-input"
             placeholder="Write your position"
             value={cargo}
-            change={setCargo}
+            onChange={(e) => setCargo(e.target.value)}
           />
-          <InputText
-            label="Image URL"
+          <input
+            type="text"
+            className="modal-input"
             placeholder="Enter image URL (optional)"
             value={image}
-            change={setImage}
+            onChange={(e) => setImage(e.target.value)}
           />
-          <List
-            mandatory
-            label="Teams"
-            itens={teams.map((team) => team.nome)}
-            change={setTeamSelected}
+          <select
+            className="modal-select"
             value={teamSelected}
-          />
-          <Button>Create Collaborator</Button>
-        </form>
+            onChange={(e) => setTeamSelected(e.target.value)}
+          >
+            <option value="" disabled>
+              Select a Team
+            </option>
+            {teams.map((team) => (
+              <option key={team.nome} value={team.nome}>
+                {team.nome}
+              </option>
+            ))}
+          </select>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            className="btn-secondary"
+            onClick={() => setShowAddCollaboratorModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
+            className="btn-primary"
+            onClick={handleAddCollaborator}
+          >
+            Add Collaborator
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-        <form onSubmit={handleNewTeamSubmit} className="formulario">
-          <h2>Add a New Team</h2>
-          <InputText
-            mandatory
-            label="Team Name"
+      <Modal
+        show={showAddTeamModal}
+        onHide={() => setShowAddTeamModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Add a New Team</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input
+            type="text"
+            className="modal-input"
             placeholder="Enter team name"
             value={newTeamName}
-            change={setNewTeamName}
+            onChange={(e) => setNewTeamName(e.target.value)}
           />
           <div className="color-picker">
             <label>
               Primary Color:
               <input
                 type="color"
+                className="modal-input"
                 value={newTeamPrimaryColor}
                 onChange={(e) => setNewTeamPrimaryColor(e.target.value)}
               />
             </label>
           </div>
-          <Button>Add Team</Button>
-        </form>
-      </motion.section>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            className="btn-secondary"
+            onClick={() => setShowAddTeamModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
+            className="btn-primary"
+            onClick={handleAddTeam}
+          >
+            Add Team
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </motion.div>
   );
 };
