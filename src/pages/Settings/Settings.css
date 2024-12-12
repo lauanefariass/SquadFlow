@@ -87,6 +87,10 @@ button.ant-btn-primary:hover {
   color: var(--text-color);
 }
 
+.ant-tabs-tab .tab-icon {
+  color: var(--primary-color);
+}
+
 .ant-tabs-tab:hover {
   color: var(--primary-color);
 }
@@ -118,6 +122,31 @@ button.ant-btn-primary:hover {
 
 .ant-switch-checked {
   background-color: var(--primary-color) !important;
+}
+
+.tab-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+}
+
+.tab-description {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: lighten(var(--primary-color), 10%);
 }
 
 @media (max-width: 768px) {

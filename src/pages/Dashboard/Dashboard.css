@@ -9,9 +9,10 @@
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+.dashboard-page h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  letter-spacing: 2px;
 }
 
 .chart-container {
@@ -22,16 +23,27 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background-color: var(--background-color);
+}
+
+.chart-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .pie-chart-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 60%;
   max-width: 600px;
   margin: 20px auto;
-  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+.pie-chart-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .button-container {
@@ -42,17 +54,17 @@ h1 {
 }
 
 .button-container button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 25px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .button-container .btn-primary {
   background-color: var(--primary-color);
-  color: #fff;
+  color: #ffffff;
   border: none;
 }
 
@@ -63,7 +75,7 @@ h1 {
 
 .button-container .btn-secondary {
   background-color: var(--secondary-color);
-  color: #fff;
+  color: #ffffff;
   border: none;
 }
 
@@ -76,7 +88,7 @@ h1 {
   background-color: var(--background-color);
   color: var(--text-color);
   border-radius: 25px;
-  border: none;
+  border: 2px solid var(--primary-color);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
 }
@@ -186,29 +198,13 @@ h1 {
   box-shadow: 0 0 10px var(--primary-color);
 }
 
-.color-picker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin: 12px 0;
-}
-
 .color-picker label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 14px;
+  font-size: 1rem;
   color: var(--text-color);
 }
 
 .color-picker input[type="color"] {
-  width: 80px;
-  height: 60px;
   cursor: pointer;
-  margin-top: 5px;
-  border: none;
-  background: none;
 }
 
 /* Media Queries */
@@ -219,7 +215,6 @@ h1 {
 
   .chart-container {
     height: 300px;
-    margin-bottom: 20px;
   }
 
   .button-container {
@@ -230,12 +225,6 @@ h1 {
   .modal-input,
   .modal-select {
     font-size: 14px;
-    padding: 12px;
-  }
-
-  .modal-footer .btn {
-    font-size: 14px;
-    padding: 8px 16px;
   }
 
   .pie-chart-container {
@@ -250,17 +239,6 @@ h1 {
 
   .chart-container {
     height: 250px;
-  }
-
-  .modal-input,
-  .modal-select {
-    font-size: 12px;
-    padding: 10px;
-  }
-
-  .modal-footer .btn {
-    font-size: 12px;
-    padding: 6px 12px;
   }
 
   .pie-chart-container {

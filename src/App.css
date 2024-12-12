@@ -10,6 +10,11 @@
   --background-color-dark: #1d1d2c;
   --text-color-dark: #f1f1f1;
   --danger-color-dark: #e91663;
+
+  --chart-dark-text-color: #ffffff;
+  --chart-light-text-color: #000000;
+  --chart-dark-grid-color: #444444;
+  --chart-light-grid-color: #dddddd;
 }
 
 [data-theme="light"] {

@@ -25,18 +25,20 @@ const Settings = ({
 
   return (
     <div className="settings-container">
-      <h1>Settings</h1>
-      <Tabs defaultActiveKey="1">
+      <h1 className="settings-title">Settings</h1>
+      <Tabs defaultActiveKey="1" className="settings-tabs">
         <TabPane
           tab={
-            <span>
+            <span className="tab-icon">
               <BulbOutlined /> Theme
             </span>
           }
           key="1"
         >
           <div className="tab-content-card">
-            <p>Toggle between Light and Dark themes:</p>
+            <p className="tab-description">
+              Toggle between Light and Dark themes:
+            </p>
             <Switch
               checked={currentTheme === "dark"}
               onChange={(checked) => onThemeChange(checked ? "dark" : "light")}
@@ -47,14 +49,14 @@ const Settings = ({
         </TabPane>
         <TabPane
           tab={
-            <span>
+            <span className="tab-icon">
               <GlobalOutlined /> Language
             </span>
           }
           key="2"
         >
           <div className="tab-content-card">
-            <p>Select your preferred language:</p>
+            <p className="tab-description">Select your preferred language:</p>
             <Select
               value={currentLanguage}
               onChange={onLanguageChange}
@@ -68,7 +70,7 @@ const Settings = ({
         </TabPane>
         <TabPane
           tab={
-            <span>
+            <span className="tab-icon">
               <MessageOutlined /> Send Suggestion
             </span>
           }
@@ -76,14 +78,18 @@ const Settings = ({
         >
           <div className="tab-content-card">
             <form onSubmit={handleSuggestionSubmit} className="message-box">
-              <p>Share your suggestions with us:</p>
+              <p className="tab-description">Share your suggestions with us:</p>
               <TextArea
                 name="suggestion"
                 rows={4}
                 placeholder="Enter your suggestion here"
                 required
               />
-              <Button type="primary" htmlType="submit">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="submit-button"
+              >
                 Submit
               </Button>
             </form>
