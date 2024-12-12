@@ -84,6 +84,11 @@ button.ant-btn-primary:hover {
 .ant-tabs-tab {
   font-weight: bold;
   font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.ant-tabs-tab:hover {
+  color: var(--primary-color);
 }
 
 .ant-tabs-tab-active .ant-tabs-tab-btn {
@@ -107,6 +112,10 @@ button.ant-btn-primary:hover {
   border-color: lighten(var(--primary-color), 10%);
 }
 
+.ant-switch {
+  background-color: var(--background-color);
+}
+
 .ant-switch-checked {
   background-color: var(--primary-color) !important;
 }
@@ -127,5 +136,20 @@ button.ant-btn-primary:hover {
   button.ant-btn-primary {
     padding: 8px 20px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-container h1 {
+    font-size: 2rem;
+  }
+
+  textarea {
+    min-height: 50px;
+  }
+
+  button.ant-btn-primary {
+    padding: 6px 18px;
+    font-size: 0.8rem;
   }
 }

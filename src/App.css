@@ -35,6 +35,90 @@ body,
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.settings-container h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+}
+
+.tab-content-card {
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  width: 85%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+textarea {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  min-height: 80px;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  border-color: lighten(var(--primary-color), 15%);
+  outline: none;
+}
+
+textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+button.ant-btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+  margin-top: 10px;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.ant-btn-primary:hover {
+  background-color: lighten(var(--primary-color), 10%);
+  border-color: lighten(var(--primary-color), 10%);
+  transform: scale(1.05);
+}
+
+.ant-tabs-tab {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--text-color); /* Define a cor baseada no tema */
+  transition: color 0.3s ease; /* Transição suave entre os temas */
+}
+
+.ant-tabs-tab:hover {
+  color: var(--primary-color); /* Cor de destaque ao passar o mouse */
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary-color) !important;
+  text-shadow: 0 5px var(--primary-color);
+}
+
 .modal-content {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -100,4 +184,38 @@ body,
 .modal-footer .btn-primary:hover {
   background-color: var(--secondary-color);
   color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .settings-card {
+    padding: 15px;
+  }
+
+  .settings-container h1 {
+    font-size: 2.5rem;
+  }
+
+  textarea {
+    min-height: 60px;
+  }
+
+  button.ant-btn-primary {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-container h1 {
+    font-size: 2rem;
+  }
+
+  textarea {
+    min-height: 50px;
+  }
+
+  button.ant-btn-primary {
+    padding: 6px 18px;
+    font-size: 0.8rem;
+  }
 }

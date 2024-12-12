@@ -149,7 +149,7 @@ const Dashboard = ({
       </motion.div>
 
       <motion.div
-        className="chart-container"
+        className="pie-chart-container"
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
