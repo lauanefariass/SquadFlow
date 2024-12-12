@@ -1,3 +1,4 @@
+/* Página Principal */
 .dashboard-page {
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@
   letter-spacing: 2px;
 }
 
+/* Charts */
 .chart-container {
   width: 100%;
   max-width: 1200px;
@@ -24,11 +26,6 @@
   align-items: center;
   padding: 20px;
   background-color: var(--background-color);
-}
-
-.chart-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .pie-chart-container {
@@ -41,11 +38,7 @@
   background-color: var(--background-color);
 }
 
-.pie-chart-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
+/* Botões */
 .button-container {
   display: flex;
   justify-content: center;
@@ -84,19 +77,18 @@
   background-color: var(--primary-color);
 }
 
+/* Modais */
 .modal-content {
   background-color: var(--background-color);
   color: var(--text-color);
-  border-radius: 25px;
-  border: 2px solid var(--primary-color);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
+  border-radius: 35px;
 }
 
 .modal-header {
   border-bottom: 1px solid var(--primary-color);
   color: var(--primary-color);
   font-weight: bold;
+  text-align: center;
 }
 
 .modal-header .btn-close {
@@ -113,13 +105,51 @@
 .modal-body {
   font-size: 1rem;
   line-height: 1.5;
-  text-align: center;
+  text-align: left;
+  padding: 20px;
 }
 
+/* Inputs */
+.modal-label {
+  font-size: 1rem;
+  margin-top: 15px;
+  color: var(--text-color);
+}
+
+.modal-input,
+.modal-select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin-top: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-input:focus,
+.modal-select:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.modal-color-picker {
+  width: 50px;
+  height: 30px;
+  margin-left: 10px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Rodapé do Modal */
 .modal-footer {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
+  padding-top: 10px;
 }
 
 .modal-footer .btn {
@@ -127,17 +157,6 @@
   font-weight: bold;
   border-radius: 30px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.modal-footer .btn-secondary {
-  background-color: var(--secondary-color);
-  border: none;
-  color: #ffffff;
-}
-
-.modal-footer .btn-secondary:hover {
-  background-color: var(--secondary-color-light);
-  transform: scale(1.05);
 }
 
 .modal-footer .btn-primary {
@@ -151,66 +170,21 @@
   transform: scale(1.05);
 }
 
-.modal-footer .btn-danger {
-  background-color: var(--danger-color);
+.modal-footer .btn-secondary {
+  background-color: var(--secondary-color);
   border: none;
   color: #ffffff;
 }
 
-.modal-footer .btn-danger:hover {
-  background-color: #b0003a;
+.modal-footer .btn-secondary:hover {
+  background-color: var(--primary-color);
   transform: scale(1.05);
 }
 
-.modal-input {
-  width: 100%;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 35px;
-  border: 1px solid var(--primary-color);
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.modal-input:focus {
-  outline: none;
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 10px var(--primary-color);
-}
-
-.modal-select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 35px;
-  border: 1px solid var(--primary-color);
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.modal-select:focus {
-  outline: none;
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 10px var(--primary-color);
-}
-
-.color-picker label {
-  font-size: 1rem;
-  color: var(--text-color);
-}
-
-.color-picker input[type="color"] {
-  cursor: pointer;
-}
-
-/* Media Queries */
+/* Ajustes para Mobile */
 @media (max-width: 768px) {
   .dashboard-page h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .chart-container {
@@ -225,6 +199,7 @@
   .modal-input,
   .modal-select {
     font-size: 14px;
+    padding: 10px;
   }
 
   .pie-chart-container {
@@ -234,7 +209,7 @@
 
 @media (max-width: 480px) {
   .dashboard-page h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .chart-container {
@@ -243,5 +218,16 @@
 
   .pie-chart-container {
     width: 80%;
+  }
+
+  .modal-input,
+  .modal-select {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .modal-footer .btn {
+    font-size: 12px;
+    padding: 6px 12px;
   }
 }
